@@ -15,7 +15,7 @@
 
   ;Name and file
   Name "${APP_NAME}"
-  OutFile "${APP_NAME}Setup-${app_revision}-${app_branch}.exe"
+  OutFile "${APP_NAME}Setup-${app_revision}-${app_branch}-x86.exe"
 
   ;Default installation folder
   InstallDir "$PROGRAMFILES64\${APP_NAME}"
@@ -297,7 +297,9 @@ Section "Uninstall"
   
   ;Un-install User Data if option is checked, otherwise skip
   ${If} $UnPageProfileCheckbox_State == ${BST_CHECKED}
+    SetShellVarContext current
     RMDir /r "$APPDATA\${APP_NAME}\"
+    SetShellVarContext all
     RMDir /r "$INSTDIR\portable_data\"
   ${EndIf}
   RMDir "$INSTDIR"
